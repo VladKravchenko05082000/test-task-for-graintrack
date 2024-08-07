@@ -1,9 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import LoginForm from "../../pages/login/form";
 
-describe("FormComponent", () => {
+describe("test for form component", () => {
   const handleOnSubmit = vi.fn(event => event.preventDefault());
 
   beforeEach(() => {

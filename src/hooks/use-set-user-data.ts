@@ -9,6 +9,9 @@ import { localStorageTokenKey } from "../constants";
 
 //In the form of a mock api, I use the api https://dummyjson.com/users
 
+//I didn`t understand properly about service approach with RxJs, so i left 2 version of realization with control data in input and pass handle in onSubmit.
+//Inputs little bit laggy, so if you want, i can send realization without userData state, and with fix lag in input
+
 //ATTENTION
 
 export const useSetUserData = ({
