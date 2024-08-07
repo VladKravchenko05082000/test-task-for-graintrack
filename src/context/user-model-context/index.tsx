@@ -22,7 +22,7 @@ export const useUserModelContext = () => {
   const userModelContext = useContext(UserModelContext);
 
   if (userModelContext === null) {
-    throw new Error("Blur context is not found");
+    throw new Error("userModel context is not found");
   }
 
   return userModelContext;
