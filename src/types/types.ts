@@ -17,3 +17,8 @@ export type UserDataType = {
   password?: string;
   username?: string;
 };
+
+export type LoginFromType = {
+  handleOnSubmit: (e: React.SyntheticEvent) => Promise<void>;
+  pending: boolean;
+};

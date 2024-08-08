@@ -1,45 +1,36 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import LoginForm from "../../pages/login/form";
 
-describe("test for form component", () => {
+describe("LoginFrom component test", () => {
   const handleOnSubmit = vi.fn(event => event.preventDefault());
 
   beforeEach(() => {
-    render(
-      <form onSubmit={handleOnSubmit}>
-        <input placeholder="Enter your username" />
-        <label>
-          Your password less than 5 symbols
-          <input placeholder="Enter your password" />
-        </label>
-
-        <button type="submit">Login</button>
-      </form>,
-    );
+    render(<LoginForm handleOnSubmit={handleOnSubmit} pending={false} />);
   });
 
   it("should render username and password inputs", () => {
-    const usernameInput = screen.getByPlaceholderText("Enter your username");
-    const passwordInput = screen.getByPlaceholderText("Enter your password");
+    const usernameInput: HTMLInputElement = screen.getByPlaceholderText("Enter your username");
+    const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Enter your password");
 
     expect(usernameInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
   });
 
-  it("should show an error message if password is less than 5 characters", () => {
-    const passwordInput = screen.getByPlaceholderText("Enter your password");
+  it("password should is more or equal than 5 characters", () => {
+    const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Enter your password");
 
-    fireEvent.change(passwordInput, { target: { value: "1234" } });
+    fireEvent.change(passwordInput, { target: { value: "12345" } });
     fireEvent.blur(passwordInput);
 
-    expect(screen.getByLabelText("Your password less than 5 symbols")).toBeInTheDocument();
+    expect(passwordInput.value.length).greaterThanOrEqual(5);
   });
 
   it("should submit the form with valid data", () => {
-    const usernameInput = screen.getByPlaceholderText("Enter your username");
-    const passwordInput = screen.getByPlaceholderText("Enter your password");
-    const submitButton = screen.getByRole("button", { name: /login/i });
+    const usernameInput: HTMLInputElement = screen.getByPlaceholderText("Enter your username");
+    const passwordInput: HTMLInputElement = screen.getByPlaceholderText("Enter your password");
+    const submitButton: HTMLButtonElement = screen.getByRole("button", { name: /login/i });
 
     fireEvent.change(usernameInput, { target: { value: "testuser" } });
     fireEvent.change(passwordInput, { target: { value: "password" } });

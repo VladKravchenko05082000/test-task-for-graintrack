@@ -1,19 +1,10 @@
-import { useRef } from "react";
-
-import { useSetUserData } from "../../../hooks";
-
 import * as Form from "@radix-ui/react-form";
 import { LockClosedIcon } from "@radix-ui/react-icons";
+import { LoginFromType } from "../../../types/types";
 
-const LoginForm: React.FC = () => {
-  const usernameRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-
-  const { handleOnSubmit, pending } = useSetUserData({ usernameRef, passwordRef, formRef });
-
+const LoginForm: React.FC<LoginFromType> = ({ handleOnSubmit, pending }) => {
   return (
-    <Form.Root onSubmit={handleOnSubmit} ref={formRef}>
+    <Form.Root onSubmit={handleOnSubmit} id="formSubmit">
       <Form.Field name="username">
         <>
           <div>
@@ -25,7 +16,7 @@ const LoginForm: React.FC = () => {
               className="w-60 rounded p-2.5 bg-inputBackgroundColor shadow-[0_0_0_1px_rgba(0,0,0,0.4)] focus:shadow-[0_0_0_2px_rgba(0,0,0,0.4)] text-white"
               placeholder="Enter your username"
               required
-              ref={usernameRef}
+              id="username"
             />
           </Form.Control>
 
@@ -48,7 +39,7 @@ const LoginForm: React.FC = () => {
             type="password"
             placeholder="Enter your password"
             required
-            ref={passwordRef}
+            id="password"
           />
         </Form.Control>
 

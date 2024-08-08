@@ -14,15 +14,7 @@ import { localStorageTokenKey } from "../constants";
 
 //ATTENTION
 
-export const useSetUserData = ({
-  usernameRef,
-  passwordRef,
-  formRef,
-}: {
-  usernameRef: React.RefObject<HTMLInputElement>;
-  passwordRef: React.RefObject<HTMLInputElement>;
-  formRef: React.RefObject<HTMLFormElement>;
-}) => {
+export const useSetUserData = () => {
   const { userData, setUserData, setIsLogged } = useUserModelContext();
 
   const [pending, setIsPending] = useState(false);
@@ -74,9 +66,9 @@ export const useSetUserData = ({
   };
 
   useEffect(() => {
-    const usernameInput = usernameRef.current;
-    const passwordInput = passwordRef.current;
-    const form = formRef.current;
+    const usernameInput = document.getElementById("username") as HTMLInputElement;
+    const passwordInput = document.getElementById("password") as HTMLInputElement;
+    const form = document.getElementById("formSubmit") as HTMLFormElement;
 
     if (usernameInput && passwordInput && form) {
       const usernameChange$ = fromEvent<InputEvent>(usernameInput, "input");
